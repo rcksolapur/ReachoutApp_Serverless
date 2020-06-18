@@ -1,0 +1,27 @@
+import React from 'react'
+import PropTypes from 'prop-types'
+
+import { config } from 'aws-cognito-redux-saga'
+
+class Auth extends React.Component {
+  static propTypes = {
+    getUser: PropTypes.func
+  }
+
+  componentWillMount() {
+    config.config.set({
+      region: 'us-east-1',
+      IdentityPoolId: 'us-east-1:a290281e-f74f-44c3-b247-5b47f5b1f95a',
+      UserPoolId: 'us-east-1_1qbmx1UZ8',
+      ClientId: '505elri886e1a4hv6tbc5m55vc',
+    })
+
+    this.props.getUser()
+  }
+
+  render() {
+    return null
+  }
+}
+
+export default Auth
