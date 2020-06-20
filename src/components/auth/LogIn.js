@@ -38,9 +38,18 @@ class LogIn extends Component {
     try {
       const user = await Auth.signIn(this.state.username, this.state.password);
       console.log(user);
+      const userType = await Auth.currentUserInfo();
+      console.log(userType);
       this.props.auth.setAuthStatus(true);
       this.props.auth.setUser(user);
-      this.props.history.push("/");
+      if (userType.attributes["custom:UserType"] === 'Helper')
+            {
+            this.props.history.push("/seeker");
+            }
+      else
+            {
+            this.props.history.push("/helper");
+            }
     }catch(error) {
       let err = null;
       !error.message ? err = { "message": error } : err = error;
@@ -51,6 +60,7 @@ class LogIn extends Component {
         }
       });
     }
+
   };
 
   onInputChange = event => {

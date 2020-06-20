@@ -21,7 +21,7 @@ export default function Home() {
                     <thead>
                         <tr>
                             <th><NavLink to="/register">Register</NavLink></th>
-                            <th><NavLink to="/register">Login</NavLink></th>
+                            <th><NavLink to="/login">Login</NavLink></th>
                         </tr>
                     </thead>
                     <tbody>

@@ -9,12 +9,15 @@ class Register extends Component {
     email: "",
     password: "",
     confirmpassword: "",
+    serviceType:"",
+
     errors: {
       cognito: null,
       blankfield: false,
       passwordmatch: false
     }
   }
+
 
   clearErrorState = () => {
     this.setState({
@@ -39,13 +42,14 @@ class Register extends Component {
     }
 
     // AWS Cognito integration here
-    const { username, email, password } = this.state;
+    const { username, email, password, serviceType } = this.state;
     try {
       const signUpResponse = await Auth.signUp({
         username,
         password,
         attributes: {
-          email: email
+          email: email,
+          "custom:UserType": serviceType,
         }
       });
       this.props.history.push("/welcome");
@@ -134,6 +138,19 @@ class Register extends Component {
                 <span className="icon is-small is-left">
                   <i className="fas fa-lock"></i>
                 </span>
+              </p>
+            </div>
+            <div className="field">
+              <p className="control">
+                <input
+                  className="input"
+                  type="text"
+                  id="serviceType"
+                  aria-describedby="userNameHelp"
+                  placeholder="Enter service {Helper, Seeker}"
+                  value={this.state.serviceType}
+                  onChange={this.onInputChange}
+                />
               </p>
             </div>
             <div className="field">

@@ -4,6 +4,8 @@ import './App.css';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
 import Products from './components/Products';
+import Seeker from './components/Seeker';
+import Helper from './components/Helper';
 import ProductAdmin from './components/ProductAdmin';
 import LogIn from './components/auth/LogIn';
 import Register from './components/auth/Register';
@@ -23,6 +25,7 @@ class App extends Component {
   state = {
     isAuthenticated: false,
     isAuthenticating: true,
+    userType:null,
     user: null
   }
 
@@ -33,7 +36,9 @@ class App extends Component {
   setUser = user => {
     this.setState({ user: user });
   }
-
+  setUserType = userType => {
+    this.setState({ userType: userType });
+  }
   async componentDidMount() {
     try {
       const session = await Auth.currentSession();
@@ -41,6 +46,9 @@ class App extends Component {
       console.log(session);
       const user = await Auth.currentAuthenticatedUser();
       this.setUser(user);
+//      const userType = await Auth.currentUserInfo();
+//      console.log(userType);
+//      this.setUserType(userType);
     } catch(error) {
       if (error !== 'No current user') {
         console.log(error);
@@ -55,7 +63,9 @@ class App extends Component {
       isAuthenticated: this.state.isAuthenticated,
       user: this.state.user,
       setAuthStatus: this.setAuthStatus,
-      setUser: this.setUser
+      setUser: this.setUser,
+//      userType: this.state.userType,
+//      setUserType: this.setUserType
     }
     return (
       !this.state.isAuthenticating &&
@@ -66,6 +76,8 @@ class App extends Component {
             <Switch>
               <Route exact path="/" render={(props) => <Home {...props} auth={authProps} />} />
               <Route exact path="/products" render={(props) => <Products {...props} auth={authProps} />} />
+              <Route exact path="/seeker" render={(props) => <Seeker {...props} auth={authProps} />} />
+              <Route exact path="/helper" render={(props) => <Helper {...props} auth={authProps} />} />
               <Route exact path="/admin" render={(props) => <ProductAdmin {...props} auth={authProps} />} />
               <Route exact path="/login" render={(props) => <LogIn {...props} auth={authProps} />} />
               <Route exact path="/register" render={(props) => <Register {...props} auth={authProps} />} />

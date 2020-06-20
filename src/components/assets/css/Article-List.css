@@ -71,3 +71,10 @@
   opacity: 1;
 }
 
+.Back-component {
+    /* The image used */
+    background-image: url('Hands.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    }

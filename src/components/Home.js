@@ -11,19 +11,13 @@ import './assets/css/Team-Boxed.css';
 import { NavLink } from 'react-router-dom'
 export default function Home() {
   return (
-      <div className="ReachoutHomePage">
+      <div className="ReachoutHomePage Back-component">
       <div className="d-flex masthead">
         <div className="container my-auto text-center" style={{height: '100px'}}>
             <h1 className="mb-1" style={{color: '#f4e287'}}>ReachOut</h1>
             <h3 className="mb-5"><em style={{color: '#7cf4e6'}}>... and be for each other</em></h3>
             <div className="table-responsive table-borderless">
                 <table className="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th><NavLink to="/register">Register</NavLink></th>
-                            <th><NavLink to="/login">Login</NavLink></th>
-                        </tr>
-                    </thead>
                     <tbody>
                         <tr></tr>
                     </tbody>
